@@ -317,13 +317,13 @@ inlineToOrg (Span _ lst) =
   inlineListToOrg lst
 inlineToOrg (Emph lst) = do
   contents <- inlineListToOrg lst
-  return $ "/" <> contents <> "/"
+  return $ " /" <> contents <> "/ "
 inlineToOrg (Strong lst) = do
   contents <- inlineListToOrg lst
-  return $ "*" <> contents <> "*"
+  return $ " *" <> contents <> "* "
 inlineToOrg (Strikeout lst) = do
   contents <- inlineListToOrg lst
-  return $ "+" <> contents <> "+"
+  return $ " +" <> contents <> "+ "
 inlineToOrg (Superscript lst) = do
   contents <- inlineListToOrg lst
   return $ "^{" <> contents <> "}"
@@ -338,7 +338,7 @@ inlineToOrg (Quoted DoubleQuote lst) = do
   contents <- inlineListToOrg lst
   return $ "\"" <> contents <> "\""
 inlineToOrg (Cite _  lst) = inlineListToOrg lst
-inlineToOrg (Code _ str) = return $ "=" <> text str <> "="
+inlineToOrg (Code _ str) = return $ " =" <> text str <> "= "
 inlineToOrg (Str str) = return . text $ escapeString str
 inlineToOrg (Math t str) = do
   modify $ \st -> st{ stHasMath = True }
